@@ -98,6 +98,18 @@ class Client:
             message = r
         
         return message   
+      
+      
+    async def number_succes(self):
+        try:
+            nume_fisier = 'succes_activity.txt'
+            with open(nume_fisier, 'r', encoding="utf-8") as f:
+                numar_linii = sum(1 for line in f) 
+            return numar_linii
+        except:
+            return 0
+      
+      
                 
     async def get_ct0(self):
         cookies = self.cookies.copy()
@@ -436,9 +448,9 @@ class Client:
             tweet = await self.tweet()
             msg = tweet['message']
             if tweet['status']:
-                print(f'{Fore.LIGHTYELLOW_EX} [ {Fore.BLUE}{self.datas}{Fore.LIGHTYELLOW_EX} ]{Fore.LIGHTYELLOW_EX} [ {Fore.GREEN}SUCCES{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}AUTH: {self.auth_token[:10]}{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX} TWEET {Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}{msg}{Fore.LIGHTYELLOW_EX} ] ')
+                print(f'{Fore.LIGHTYELLOW_EX} [ {Fore.BLUE} {await self.number_succes()} {Fore.LIGHTYELLOW_EX} ]{Fore.LIGHTYELLOW_EX}{Fore.LIGHTYELLOW_EX} [ {Fore.BLUE}{self.datas}{Fore.LIGHTYELLOW_EX} ]{Fore.LIGHTYELLOW_EX} [ {Fore.GREEN}SUCCES{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}AUTH: {self.auth_token[:10]}{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX} TWEET {Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}{msg}{Fore.LIGHTYELLOW_EX} ] ')
             else:
-                print(f'{Fore.LIGHTYELLOW_EX} [ {Fore.BLUE}{self.datas}{Fore.LIGHTYELLOW_EX} ]{Fore.LIGHTYELLOW_EX} [ {Fore.RED}ERROR{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}AUTH: {self.auth_token[:10]}{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX} TWEET {Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}{msg}{Fore.LIGHTYELLOW_EX} ] ')
+                print(f'{Fore.LIGHTYELLOW_EX} [ {Fore.BLUE} {await self.number_succes()} {Fore.LIGHTYELLOW_EX} ]{Fore.LIGHTYELLOW_EX}{Fore.LIGHTYELLOW_EX} [ {Fore.BLUE}{self.datas}{Fore.LIGHTYELLOW_EX} ]{Fore.LIGHTYELLOW_EX} [ {Fore.RED}ERROR{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}AUTH: {self.auth_token[:10]}{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX} TWEET {Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}{msg}{Fore.LIGHTYELLOW_EX} ] ')
             response = await self.get_feed_info()
             count = 0
             if len(self.home_data) > 0:
@@ -448,26 +460,31 @@ class Client:
                     tweet_id = line['tweet_id']
                     response = await self.send_fallow(user_id)
                     if response:
-                        print(f'{Fore.LIGHTYELLOW_EX} [ {Fore.BLUE}{self.datas}{Fore.LIGHTYELLOW_EX} ]{Fore.LIGHTYELLOW_EX} [ {Fore.GREEN}SUCCES{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}{count}{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}AUTH: {self.auth_token[:10]}{Fore.LIGHTYELLOW_EX} ] [ {Fore.MAGENTA} FALLOW {Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}SCREEN NAME: {Fore.YELLOW }{response}{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}USER ID: {user_id}{Fore.LIGHTYELLOW_EX} ]')
+                        print(f'{Fore.LIGHTYELLOW_EX} [ {Fore.BLUE} {await self.number_succes()} {Fore.LIGHTYELLOW_EX} ]{Fore.LIGHTYELLOW_EX}{Fore.LIGHTYELLOW_EX} [ {Fore.BLUE}{self.datas}{Fore.LIGHTYELLOW_EX} ]{Fore.LIGHTYELLOW_EX} [ {Fore.GREEN}SUCCES{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}{count}{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}AUTH: {self.auth_token[:10]}{Fore.LIGHTYELLOW_EX} ] [ {Fore.MAGENTA} FALLOW {Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}SCREEN NAME: {Fore.YELLOW }{response}{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}USER ID: {user_id}{Fore.LIGHTYELLOW_EX} ]')
                     response = await self.like(tweet_id)
                     if response:
-                        print(f'{Fore.LIGHTYELLOW_EX} [ {Fore.BLUE}{self.datas}{Fore.LIGHTYELLOW_EX} ]{Fore.LIGHTYELLOW_EX} [ {Fore.GREEN}SUCCES{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}{count}{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}AUTH: {self.auth_token[:10]}{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTMAGENTA_EX} -LIKE- {Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}USER ID: {user_id}{Fore.LIGHTYELLOW_EX} ]')
+                        print(f'{Fore.LIGHTYELLOW_EX} [ {Fore.BLUE} {await self.number_succes()} {Fore.LIGHTYELLOW_EX} ]{Fore.LIGHTYELLOW_EX}{Fore.LIGHTYELLOW_EX} [ {Fore.BLUE}{self.datas}{Fore.LIGHTYELLOW_EX} ]{Fore.LIGHTYELLOW_EX} [ {Fore.GREEN}SUCCES{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}{count}{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}AUTH: {self.auth_token[:10]}{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTMAGENTA_EX} -LIKE- {Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}USER ID: {user_id}{Fore.LIGHTYELLOW_EX} ]')
                     re_tweet = await self.send_retweet(tweet_id)
                     msg = re_tweet['message']
                     if re_tweet['status']:
-                        print(f'{Fore.LIGHTYELLOW_EX} [ {Fore.BLUE}{self.datas}{Fore.LIGHTYELLOW_EX} ]{Fore.LIGHTYELLOW_EX} [ {Fore.GREEN}SUCCES{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}AUTH: {self.auth_token[:10]}{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX} RE_TWEET {Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}{msg}{Fore.LIGHTYELLOW_EX} ] ')
+                        print(f'{Fore.LIGHTYELLOW_EX} [ {Fore.BLUE} {await self.number_succes()} {Fore.LIGHTYELLOW_EX} ]{Fore.LIGHTYELLOW_EX}{Fore.LIGHTYELLOW_EX} [ {Fore.BLUE}{self.datas}{Fore.LIGHTYELLOW_EX} ]{Fore.LIGHTYELLOW_EX} [ {Fore.GREEN}SUCCES{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}AUTH: {self.auth_token[:10]}{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX} RE_TWEET {Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}{msg}{Fore.LIGHTYELLOW_EX} ] ')
                     else:
-                        print(f'{Fore.LIGHTYELLOW_EX} [ {Fore.BLUE}{self.datas}{Fore.LIGHTYELLOW_EX} ]{Fore.LIGHTYELLOW_EX} [ {Fore.RED}ERROR{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}AUTH: {self.auth_token[:10]}{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX} TWEET {Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}{msg}{Fore.LIGHTYELLOW_EX} ] ')
+                        print(f'{Fore.LIGHTYELLOW_EX} [ {Fore.BLUE} {await self.number_succes()} {Fore.LIGHTYELLOW_EX} ]{Fore.LIGHTYELLOW_EX}{Fore.LIGHTYELLOW_EX} [ {Fore.BLUE}{self.datas}{Fore.LIGHTYELLOW_EX} ]{Fore.LIGHTYELLOW_EX} [ {Fore.RED}ERROR{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}AUTH: {self.auth_token[:10]}{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX} RE TWEET {Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}{msg}{Fore.LIGHTYELLOW_EX} ] ')
                     create_tweet = await self.send_reply(tweet_id)
                     msg = create_tweet['message']
                     if create_tweet['status']:
-                        print(f'{Fore.LIGHTYELLOW_EX} [ {Fore.BLUE}{self.datas}{Fore.LIGHTYELLOW_EX} ]{Fore.LIGHTYELLOW_EX} [ {Fore.GREEN}SUCCES{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}AUTH: {self.auth_token[:10]}{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX} REPLY {Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}{msg}{Fore.LIGHTYELLOW_EX} ] ')
+                        print(f'{Fore.LIGHTYELLOW_EX} [ {Fore.BLUE} {await self.number_succes()} {Fore.LIGHTYELLOW_EX} ]{Fore.LIGHTYELLOW_EX}{Fore.LIGHTYELLOW_EX} [ {Fore.BLUE}{self.datas}{Fore.LIGHTYELLOW_EX} ]{Fore.LIGHTYELLOW_EX} [ {Fore.GREEN}SUCCES{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}AUTH: {self.auth_token[:10]}{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX} REPLY {Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}{msg}{Fore.LIGHTYELLOW_EX} ] ')
                     else:
-                        print(f'{Fore.LIGHTYELLOW_EX} [ {Fore.BLUE}{self.datas}{Fore.LIGHTYELLOW_EX} ]{Fore.LIGHTYELLOW_EX} [ {Fore.RED}ERROR{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}AUTH: {self.auth_token[:10]}{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX} REPLY {Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}{msg}{Fore.LIGHTYELLOW_EX} ] ')
-                    await asyncio.sleep(60)
+                        print(f'{Fore.LIGHTYELLOW_EX} [ {Fore.BLUE} {await self.number_succes()} {Fore.LIGHTYELLOW_EX} ]{Fore.LIGHTYELLOW_EX}{Fore.LIGHTYELLOW_EX} [ {Fore.BLUE}{self.datas}{Fore.LIGHTYELLOW_EX} ]{Fore.LIGHTYELLOW_EX} [ {Fore.RED}ERROR{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}AUTH: {self.auth_token[:10]}{Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX} REPLY {Fore.LIGHTYELLOW_EX} ] [ {Fore.LIGHTCYAN_EX}{msg}{Fore.LIGHTYELLOW_EX} ] ')
+                    await asyncio.sleep(1)
                 self.home_data = []        
                 count = 0
             self.home_data = []   
+
+            with open('succes_activity.txt', 'a', encoding="utf-8") as f:
+                f.write(f'{self.auth_token}\n')                
+        
+        
         except Exception as e:
             print(f'{Fore.RED} ERROR:  {e} {Fore.RESET}')
             pass
